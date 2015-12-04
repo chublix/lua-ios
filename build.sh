@@ -16,7 +16,7 @@ findLatestSDKVersion()
 xcodeBuild()
 {
   if [[ $SDKVERSION < 9.0  ]]; then
-    usingBitcode == "NO"
+    usingBitcode="NO"
   fi
 
   if [[ $1 == "iphoneos" ]]; then
@@ -28,7 +28,7 @@ xcodeBuild()
   if [[ $usingBitcode == "YES" ]]; then
     xcodebuild -project lua.xcodeproj ONLY_ACTIVE_ARCH=NO VALID_ARCHS="$archs" CONFIGURATION_BUILD_DIR="$pwd/output/$1" -configuration Release ENABLE_BITCODE="$usingBitcode" ARCHS="$archs" OTHER_CFLAGS="-fembed-bitcode -DLUA_USE_MACOSX" -sdk "$1$SDKVERSION" -scheme lua clean build
   else
-    xcodebuild -project lua.xcodeproj ONLY_ACTIVE_ARCH=NO VALID_ARCHS="$archs" CONFIGURATION_BUILD_DIR="$pwd/output/$1" -configuration Release ENABLE_BITCODE="$usingBitcode" ARCHS="$archs" OTHER_CFLAGS="-DLUA_USE_MACOSX" -sdk "$1$SDKVERSION" -scheme lua clean build
+    xcodebuild -project lua.xcodeproj ONLY_ACTIVE_ARCH=NO VALID_ARCHS="$archs" CONFIGURATION_BUILD_DIR="$pwd/output/$1" -configuration Release ARCHS="$archs" OTHER_CFLAGS="-DLUA_USE_MACOSX" -sdk "$1$SDKVERSION" -scheme lua clean build
   fi
 }
 
