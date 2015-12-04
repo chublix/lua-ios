@@ -1,6 +1,5 @@
 # lua-ios
 Lua library for ios
-# libtorrent-ios
 
 Lua library (5.3.2) for iOS like Xcode project 
 For building library execute in terminal build.sh script, after building you can find buided universal binary (device and simulator) with bitcode support(Xcode 7 and higher needed) in output/Universal directory (same folder in which the script is).
